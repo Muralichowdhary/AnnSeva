@@ -28,7 +28,7 @@ const contactController = require("./controllers/contact.controller.js")
 const { validateToken } = require("./middleware/validateToken");
 
 mongoose
-    .connect("mongodb://127.0.0.1:27017/food-bank")
+    .connect("mongodb+srv://kartheek:kartheek@cluster0.bxzdpgo.mongodb.net/")
     .then(() => console.log("Connected to DataBase successfully..."));
 
 // Connecting API endpoints to routes

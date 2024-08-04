@@ -1,13 +1,29 @@
 const Otp = require('../Models/otp.Model');
+const nodemailer = require('nodemailer');
 const generateOtp = require('../utils/generateOtp');
 const sendEmail = require('../utils/sendEmail');
 const { hashData, verifyHashedData } = require('../utils/hashData');
-const { AUTH_EMAIL } = process.env;
+const { AUTH_EMAIL,AUTH_PASS } = process.env;
 const sendOTP = async({ email }) => {
   try{
     if(!email) {
       throw new Error("Email and OTP are required.");
     }
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      host: 'smpt.gmail.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: AUTH_EMAIL
+    })
+    const mailOptions = {
+      from: AUTH_EMAIL,
+      to: email,
+      subject: "OTP for login",
+      html: `<h1>OTP for login</h1><p>${generatedOtp}</p>
+      <p>OTP expires in 10 minutes</p>`
+    };
     
   }
 

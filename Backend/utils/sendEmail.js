@@ -4,7 +4,7 @@ require('dotenv').config();
 const { AUTH_EMAIL, AUTH_PASS } = process.env;
 
 let transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'smtp-mail.outlook.com',
   auth: {
     user: AUTH_EMAIL,
     pass: AUTH_PASS,

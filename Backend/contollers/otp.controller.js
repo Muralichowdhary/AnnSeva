@@ -3,17 +3,18 @@ const generateOtp = require('../utils/generateOtp');
 const sendEmail = require('../utils/sendEmail');
 const { hashData, verifyHashedData } = require('../utils/hashData');
 const { AUTH_EMAIL } = process.env;
-
+console.log("a")
 const sendOtp = async ({ email }) => {
   try {
     if (!email) {
+      console.log("b")
       throw new Error("Provided invalid credentials");
     }
 
     await Otp.deleteOne({ email });
-
+    console.log("c")
     const generatedOtp = await generateOtp();
-
+  console.log("d")
     const mailOptions = {
       from: AUTH_EMAIL,
       to: email,

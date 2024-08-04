@@ -14,7 +14,7 @@ const sendOtp = async ({ email }) => {
     const generatedOtp = await generateOtp();
 
     const mailOptions = {
-      from: AUTH_EMAIL,
+      from: 'k663385@gmail.com',
       to: email,
       subject: "OTP for login",
       html: `<h1>OTP for login</h1><p>${generatedOtp}</p>

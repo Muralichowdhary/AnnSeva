@@ -32,7 +32,7 @@ const sendOtp = async({ email }) => {
       html: `<h1>OTP for login</h1><p>${newOtp}</p>
       <p>OTP expires in 10 minutes</p>`
     };
-    sendMail(trasnporter,mailOptions);
+    sendMail(transporter,mailOptions);
   }
   catch(err) {
     console.error(err);

@@ -4,7 +4,7 @@ const generateOtp = require('../utils/generateOtp');
 const sendEmail = require('../utils/sendEmail');
 const { hashData, verifyHashedData } = require('../utils/hashData');
 const { AUTH_EMAIL,AUTH_PASS } = process.env;
-const sendOTP = async({ email }) => {
+const sendOtp = async({ email }) => {
   try{
     if(!email) {
       throw new Error("Email and OTP are required.");

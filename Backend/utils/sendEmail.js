@@ -1,34 +1,27 @@
-const nodemailer = require("nodemailer");
-require('dotenv').config();
+const nodemailer = require('nodemailer');
 
-const { AUTH_EMAIL, AUTH_PASS } = process.env;
-
-let transporter = nodemailer.createTransport({
-  host: 'smtp.office365.com', // Explicitly specifying the host
-  port: 587, // Using the default port for Outlook
-  secure: false, // Use TLS
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
   auth: {
-    user: AUTH_EMAIL,
-    pass: AUTH_PASS,
-  },
-  tls: {
-    ciphers: 'SSLv3'
+    user: 'k663385@gmail.com',
+    pass: 'kagra@143209'
   }
 });
 
-console.log("a");
+const mailOptions = {
+  from: 'k663385@gmail.com',
+  to: 'kartheeksk.gurram@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
 
-transporter.verify((error, success) => {
+transporter.sendMail(mailOptions, function(error, info){
   if (error) {
-    console.log("b");
     console.log(error);
   } else {
-    console.log('Connection established successfully');
+    console.log('Email sent: ' + info.response);
   }
 });
-
-console.log("c");
-
 const sendEmail = async (mailOptions) => {
   try {
     await transporter.sendMail(mailOptions);

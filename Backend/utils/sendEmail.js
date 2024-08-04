@@ -12,11 +12,12 @@ let transporter = nodemailer.createTransport({
   tls: {
     ciphers: 'SSLv3'
   }
-  
+ 
 });
-
+ console.log("a")
 transporter.verify((error, success) => {
   if (error) {
+     console.log("b")
     console.log(error);
   }
   else {
@@ -24,10 +25,11 @@ transporter.verify((error, success) => {
   }
   
 });
-
+ console.log("c")
 const sendEmail = async (mailOptions) => {
   try {
     await transporter.sendMail(mailOptions);
+     console.log("d")
   } catch (error) {
     console.log(error)
     throw error;

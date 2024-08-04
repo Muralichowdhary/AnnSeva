@@ -11,22 +11,41 @@ const sendOTP = async({ email }) => {
     }
     const transporter = nodemailer.createTransport({
       service: 'gmail',
-      host: 'smpt.gmail.com',
+      host: 'smtp.gmail.com',
       port: 587,
       secure: false,
       auth: {
-        user: AUTH_EMAIL
-    })
+        user: AUTH_EMAIL,
+        pass: AUTH_PASS,
+      },
+    });
+    const newOtp = 5070;
+
+    
     const mailOptions = {
-      from: AUTH_EMAIL,
+      from: {
+        name: 'Ann Seva',
+        address: AUTH_EMAIL
+      },
       to: email,
       subject: "OTP for login",
-      html: `<h1>OTP for login</h1><p>${generatedOtp}</p>
+      html: `<h1>OTP for login</h1><p>${newOtp}</p>
       <p>OTP expires in 10 minutes</p>`
     };
-    
+    sendMail(trasnporter,mailOptions);
   }
-
+  catch(err) {
+    console.error(err);
+  }
+}
+const sendMail = async(transporter,mailOptions) => {
+  try {
+    await transporter.sendMail()
+  }
+  catch(err) {
+    console.error(err);
+  }
+}
 const verifyOTP = async ({ email, otp }) => {
   try {
     if (!(email && otp)) {

@@ -24,7 +24,9 @@ const sendOtp = async ({ email }) => {
     };
 
     await sendEmail(mailOptions);
+    console.log("e")
     const hashedOtp = await hashData(generatedOtp);
+    console.log("f")
     const newOtp = new Otp({
       email,
       otp: hashedOtp,
@@ -33,8 +35,11 @@ const sendOtp = async ({ email }) => {
     });
 
     const createdOtpRecord = await newOtp.save();
+    console.log("g")
     return createdOtpRecord;
+    console.log("h")
   } catch (err) {
+    console.log("i")
     console.error(err); // Log the error details
     throw new Error(err.message);
   }

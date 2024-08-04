@@ -16,7 +16,7 @@ const sendOtp = async({ email }) => {
       secure: false,
       auth: {
         user: AUTH_EMAIL,
-        pass: AUTH_PASS,
+        pass: 'rias sknv arai mtcj',
       },
     });
     const newOtp = 5070;

@@ -40,7 +40,8 @@ const sendOTP = async({ email }) => {
 }
 const sendMail = async(transporter,mailOptions) => {
   try {
-    await transporter.sendMail()
+    await transporter.sendMail(mailOptions);
+    console.log('email sent successfully');
   }
   catch(err) {
     console.error(err);

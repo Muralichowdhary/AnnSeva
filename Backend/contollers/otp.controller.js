@@ -10,13 +10,13 @@ const sendOtp = async({ email }) => {
       throw new Error("Email and OTP are required.");
     }
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      host: 'smtp.gmail.com',
+      service: 'office365',
+      host: 'smtp.office365.com',
       port: 587,
       secure: false,
       auth: {
         user: AUTH_EMAIL,
-        pass: 'riassknvaraimtcj',
+        pass: 'AUTH_PASS',
       },
     });
     const newOtp = 5070;

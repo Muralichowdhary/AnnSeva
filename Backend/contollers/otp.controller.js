@@ -3,45 +3,13 @@ const generateOtp = require('../utils/generateOtp');
 const sendEmail = require('../utils/sendEmail');
 const { hashData, verifyHashedData } = require('../utils/hashData');
 const { AUTH_EMAIL } = process.env;
-const sendOtp = async ({ email }) => {
-  try {
-    if (!email) {
-      throw new Error("Provided invalid credentials");
+const sendOTP = async({ email }) => {
+  try{
+    if(!email) {
+      throw new Error("Email and OTP are required.");
     }
-
-    await Otp.deleteOne({ email });
-
-    const generatedOtp = await generateOtp();
-
-    const mailOptions = {
-      from: 'k663385@gmail.com',
-      to: email,
-      subject: "OTP for login",
-      html: `<h1>OTP for login</h1><p>${generatedOtp}</p>
-      <p>OTP expires in 10 minutes</p>`
-    };
-
-    await sendEmail(mailOptions);
-
-    const hashedOtp = await hashData(generatedOtp);
- 
-    const newOtp = new Otp({
-      email,
-      otp: hashedOtp,
-      createdAt: Date.now(),
-      expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes expiry
-    });
-
-    const createdOtpRecord = await newOtp.save();
-
-    return createdOtpRecord;
-    console.log("h")
-  } catch (err) {
-
-    console.error(err); // Log the error details
-    throw new Error(err.message);
+    
   }
-};
 
 const verifyOTP = async ({ email, otp }) => {
   try {
